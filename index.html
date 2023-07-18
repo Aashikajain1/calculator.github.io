@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+<style>
+    .back {
+        border: 10px solid grey;
+        background-color: rgb(61, 60, 60);
+        margin: 100px 300px 100px 459px;
+        border-radius: 10px;
+        height: 600px;
+        width: 500px;
+        display: flex;
+        box-shadow: 16px 16px 13px #393939,
+            6px 6px 13px rgba(0, 0, 0, .16);
+    }
+
+    .row {
+        justify-content: center;
+        display: grid;
+        grid-template-columns: repeat(4, 110px);
+    }
+
+    input {
+        grid-column: span 4;
+        margin: 30px 50px 0px 50px;
+        background-color: rgb(82,101, 84);
+        border-radius: 10px;
+        height: 90px;
+        width: 400px;
+        color: rgb(26, 25, 25);
+        text-align: end;
+        font-size:40px;
+        box-shadow: inset -6px -6px 13px rgb(151, 192, 156),
+            inset 6px 6px 13px rgba(0, 0, 0, .16);
+        border: 5px solid grey;
+    }
+
+    button {
+        width: 70px;
+        border: none;
+        margin: 10px 50px 10px 55px;
+        box-shadow: inset -6px -6px 13px #889089,
+            inset 6px 6px 13px rgba(0, 0, 0, .16);
+        border-radius: 10%;
+        font-size: 30px;
+    }
+
+    .equal {
+        width: 180px;
+    }
+</style>
+
+<body style="background-color:wheat">
+    <h1 style="background-color: beige;color: black;text-align: center;font-size: xx-large">CALCULATOR..!</h1>
+    <div class="back">
+        <div class="row">
+            <input type="text" id="inp">
+            <button onclick="clr()">AC</button>
+            <button onclick="cal('%')">%</button>
+            <button onclick="cal('/')">/</button>
+            <button onclick="del()">DEL</button>
+            <button onclick="cal('7')">7</button>
+            <button onclick="cal('8')">8</button>
+            <button onclick="cal('9')">9</button>
+            <button onclick="cal('*')">*</button>
+            <button onclick="cal('4')">4</button>
+            <button onclick="cal('5')">5</button>
+            <button onclick="cal('6')">6</button>
+            <button onclick="cal('-')">-</button>
+            <button onclick="cal('1')">1</button>
+            <button onclick="cal('2')">2</button>
+            <button onclick="cal('3')">3</button>
+            <button onclick="cal('+')">+</button>
+            <button onclick="cal('.')">.</button>
+            <button onclick="cal('0')">0</button>
+            <button onclick="res()" class="equal">=</button>
+        </div>
+    </div>
+<script>
+    let result = document.getElementById("inp");
+let u;
+function clr() {
+    sc = document.getElementById("inp")
+    sc.style = 'background-color: rgb(150, 160, 134)';
+    result.value = "0";
+    u = '0';
+}
+function cal(number) {
+    if (u == "0") {
+        if (result.value == 0) {
+            result.value = number;
+        }
+        else {
+            result.value += number;
+        }
+    }
+}
+function res() {
+    try {
+        result.value = eval(result.value);
+    }
+    catch (err) {
+        alert("enter valid input");
+    }
+}
+function del() {
+    result.value = result.value.slice(0, -1);
+}
+var Time = 5000; // Time in milliseconds (30 seconds)
+var Timer; // Global variable to store the timer
+function startTimer() {
+    Timer = setTimeout(Off,Time);
+}
+function resetTimer() {
+    clearTimeout(Timer);
+    startTimer();
+}
+function Off() {
+    sr = document.getElementById("inp")
+    sr.style = 'background-color: rgb(82,101, 84)';
+    result.value="";
+}
+document.addEventListener("mousemove", resetTimer);
+document.addEventListener("mousedown", resetTimer);
+document.addEventListener("keypress", resetTimer);
+document.addEventListener("touchmove", resetTimer);
+startTimer();
+
+</script>
+</body>
+
+</html>
